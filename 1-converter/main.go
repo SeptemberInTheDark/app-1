@@ -16,7 +16,15 @@ func main() {
 		}
 	}()
 	fmt.Println("___ Конвертер Валют ___")
-	calculate()
+    for {
+        calculate()
+        //
+        isRepeatCalc := checkRepeatCalculation()
+		if !isRepeatCalc {
+			break
+		}
+    }
+	
 }
 
 func readInput() (string, float64, string, error) {
@@ -85,4 +93,15 @@ func calculate() {
 	default:
 		fmt.Println("Неподдерживаемая конвертация валют")
 	}
+}
+
+func checkRepeatCalculation() bool {
+	var userChoice string
+
+	fmt.Println("Хотите сделать новый рассчет ? (Y/n)")
+	fmt.Scan(&userChoice)
+	if userChoice == "Y" || userChoice == "y" {
+		return true
+	}
+	return false
 }
